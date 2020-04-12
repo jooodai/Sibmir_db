@@ -1,0 +1,6 @@
+    {% if user.problem == "Проектирование" %}
+        <h3> Это раздел Проектрирования </h3>
+
+
+         <a href="{{ url_for('newelement.html') }}">Новый элемент</a>
+    {% endif %}

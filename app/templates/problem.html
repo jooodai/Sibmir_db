@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User: {{ user.username }}</h1>
+    <h1>{{ user.problem }}</h1>
+    <hr>
+    {% for post in posts %}
+    <p>
+    {{ post.author.username }} says: <b>{{ post.body }}</b>
+    </p>
+    {% endfor %}
+
+ <p class = "p" onClick = "toggle(this, 1)"><span id = "s1">&nbsp;+&nbsp;</span>Хранилище СН</p>
+  <div id = "d1" style = "display:none">
+   <p style = "margin-left:30px">Конфигурация хранилища СН</p>
+   <p class = "p" style = "margin-left:10px" onClick = "toggle(this, 2)"><span id = "s2">&nbsp;+&nbsp;</span>Заполнение хранилища СН</p>
+   <div id = "d2" style = "display:none">
+    <p style = "margin-left:60px">Обработки загрузки данных</p>
+    <p style = "margin-left:60px">Загрузка номенклатуры</p>
+    <p style = "margin-left:60px">Загрузка серийных номеров</p>
+   </div>
+   <p style = "margin-left:30px">Общий модуль СН</p>
+  </div>
+ <p style = "margin-left:20px">Конфигурация Гарантия</p>
+
+ <script>
+   function toggle(node, idVl) {
+    dvS = document.getElementById("d" + idVl).style
+    sp = document.getElementById("s" + idVl);
+    // Раскрывает ветвь списка
+    if (dvS.display == "none") {
+     sp.innerHTML = "&nbsp;–&nbsp;";
+     dvS.display = "inline";
+    }
+    // Скрываем ветвь списка
+    else {
+     sp.innerHTML = "&nbsp;+&nbsp;";
+     dvS.display = "none";
+    }
+   }
+  </script>
+
+
+
+{% endblock %}

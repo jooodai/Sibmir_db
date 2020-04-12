@@ -1,0 +1,37 @@
+{% extends 'bootstrap/base.html' %}
+<html>
+
+    <head>
+        {% if title %}
+        <title>{{ title }} - СибМИР-Корпус</title>
+        {% else %}
+        <title>СибМИР-Корпус</title>
+        {% endif %}
+    </head>
+    <body>
+    {% block navbar %}
+    <nav class="navbar navbar-default">
+        <div>
+            СибМИР-Корпус:
+            <a href="{{ url_for('index') }}">Главная</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Вход</a>
+            {% else %}
+            <a href="{{ url_for('user', username=current_user.username) }}">Профиль</a>
+            <a href="{{ url_for('logout') }}">Выход</a>
+            {% endif %}
+        </div>
+        {% endblock %}
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
